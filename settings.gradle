@@ -9,5 +9,5 @@
 
 rootProject.name = 'security'
 
-include 'security01'
+include 'security01', 'security02'
 
