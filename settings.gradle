@@ -11,5 +11,5 @@ rootProject.name = 'security'
 
 include 'security01', 'security02', 'security03'
 include 'security04', 'security05', 'security06'
-include 'security07'
+include 'security07', 'security08'
 
