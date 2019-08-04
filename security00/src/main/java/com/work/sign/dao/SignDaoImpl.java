@@ -8,6 +8,10 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 
 import com.work.sign.model.*;
 
+import java.util.*;
+
+import java.sql.*;
+
 @Repository
 public class SignDaoImpl implements SignDao {
 
@@ -29,6 +33,16 @@ public class SignDaoImpl implements SignDao {
 
     @Override
     public boolean CheckName(String name) {
+        String sql = "select username from users";
+        List<String> names = jdbcTemplate.queryForList("select username from users where username=?", 
+            new Object[]{name}, String.class); 
+
+        for (String n : names) {
+            if (name.equals(n)) {
+                return false;
+            }
+        }
         
+        return true;
     }
 }

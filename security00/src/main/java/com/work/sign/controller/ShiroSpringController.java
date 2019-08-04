@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 
 import com.work.sign.service.SignService;
 
+import com.work.sign.dao.*;
+
 @Controller
 public class ShiroSpringController {
 
@@ -33,7 +35,10 @@ public class ShiroSpringController {
     HttpServletRequest req;
 
     @Autowired
-	  SignService signService;
+    SignService signService;
+    
+    @Autowired
+	  SignDao signDao;
 
     @GetMapping("/")
     public String index() {
@@ -74,11 +79,15 @@ public class ShiroSpringController {
       }
 
       else {
-        signService.saveUser(cred);
+        if (signDao.CheckName(cred.getUsername())) {
+          return "redirect:/signin";
+        }
+        else {
+          signService.saveUser(cred);
 
-        return "redirect:/";
+          return "redirect:/";
+        } 
       }
-        
     }
 
 
