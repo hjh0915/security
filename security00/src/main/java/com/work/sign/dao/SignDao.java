@@ -4,5 +4,5 @@ import com.work.sign.model.SignCredentials;
 
 public interface SignDao {
     void saveUser(SignCredentials cred);
-    boolean CheckName(String name);
+    boolean isExistUsername(String name);
 }

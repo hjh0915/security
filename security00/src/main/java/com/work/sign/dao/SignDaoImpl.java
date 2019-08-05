@@ -32,17 +32,17 @@ public class SignDaoImpl implements SignDao {
     }
 
     @Override
-    public boolean CheckName(String name) {
+    public boolean isExistUsername(String name) {
         String sql = "select username from users";
         List<String> names = jdbcTemplate.queryForList("select username from users where username=?", 
             new Object[]{name}, String.class); 
 
         for (String n : names) {
             if (name.equals(n)) {
-                return false;
+                return true;
             }
         }
         
-        return true;
+        return false;
     }
 }

@@ -79,7 +79,9 @@ public class ShiroSpringController {
       }
 
       else {
-        if (signDao.CheckName(cred.getUsername())) {
+        if (signDao.isExistUsername(cred.getUsername())) {
+          log.info("注册失败，请检查用户名重复" + cred.getUsername());
+          attr.addFlashAttribute("error", "用户名已存在");
           return "redirect:/signin";
         }
         else {
